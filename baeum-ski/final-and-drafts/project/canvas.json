@@ -1,0 +1,111 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "After.dc.html": {
+      "h": 1980,
+      "page": "drafts",
+      "title": "강습 후 받으시는 것 — 수정안",
+      "w": 860,
+      "x": 4352,
+      "y": -5680
+    },
+    "Bold.dc.html": {
+      "h": 2250,
+      "page": "drafts",
+      "title": "B안 — 대비 강조 (다크 그린)",
+      "w": 860,
+      "x": 3412,
+      "y": -5680
+    },
+    "Final1.dc.html": {
+      "h": 7100,
+      "page": "final",
+      "title": "최종본 1 — 가격·히어로·후기·방식·강사진·자격",
+      "w": 860,
+      "x": 0,
+      "y": 0
+    },
+    "Final2.dc.html": {
+      "h": 5750,
+      "page": "final",
+      "title": "최종본 2 — 강습 전날·혜택·진행 과정·기술등급",
+      "w": 860,
+      "x": 940,
+      "y": 0
+    },
+    "Final3.dc.html": {
+      "h": 5750,
+      "page": "final",
+      "title": "최종본 3 — 강습 후 기록·비교·요금·상담",
+      "w": 860,
+      "x": 1880,
+      "y": 0
+    },
+    "Final4.dc.html": {
+      "h": 5800,
+      "page": "final",
+      "title": "최종본 4 — 곤지암 안내·FAQ·환불·예약",
+      "w": 860,
+      "x": 2820,
+      "y": 0
+    },
+    "Gonjiam.dc.html": {
+      "h": 2520,
+      "page": "drafts",
+      "title": "곤지암리조트 안내 — 길찾기",
+      "w": 860,
+      "x": 5292,
+      "y": -5680
+    },
+    "Main.dc.html": {
+      "h": 2000,
+      "page": "drafts",
+      "title": "A안 — 현재 톤 유지 (아이보리 + 그린)",
+      "w": 860,
+      "x": 2472,
+      "y": -5680
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-30T02:40:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "final",
+    "view": "canvas"
+  },
+  "notes": {
+    "finaltitle": {
+      "kind": "title1",
+      "maxW": 3700,
+      "page": "final",
+      "text": "배움스키스쿨 상세페이지 최종본 (1 → 4 순서로 이어 붙이기)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Bold.dc.html",
+    "After.dc.html",
+    "Gonjiam.dc.html",
+    "Final1.dc.html",
+    "Final2.dc.html",
+    "Final3.dc.html",
+    "Final4.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "drafts",
+      "name": "섹션 시안"
+    },
+    {
+      "id": "final",
+      "name": "최종본"
+    }
+  ],
+  "title": "배움스키스쿨 상세페이지 — 섹션 시안 & 최종본"
+}

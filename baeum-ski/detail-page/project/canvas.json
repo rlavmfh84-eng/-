@@ -1,0 +1,17 @@
+{
+  "v": 3,
+  "attachments": {},
+  "createdOnFiles": {
+    "at": "2026-09-23T09:41:29.154Z",
+    "v": 1
+  },
+  "title": "배움스키스쿨 상세페이지",
+  "launch": {"view": "focused", "file": "Main.dc.html"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 860, "h": 1200, "expand": "fill"}
+  },
+  "order": ["Main.dc.html"],
+  "notes": {},
+  "designSystems": []
+}

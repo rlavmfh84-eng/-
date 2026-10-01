@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>배움스키스쿨 상세페이지</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2F5D45;
+    --navy2:#1F3D2C;
+    --mint:#4FA3C7;
+    --mint-soft:#E3F3FA;
+    --gold:#D9A441;
+    --ice:#F7F6F1;
+    --white:#FFFFFF;
+    --gray:#6B6558;
+    --line:#E5E1D8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+    color:var(--navy);
+    background:#ffffff;
+  }
+  h1,h2,h3{
+    font-family:'Noto Serif KR',serif;
+    font-weight:700;
+    margin:0;
+  }
+  p{ margin:0; }
+  .sec{
+    width:100%;
+    position:relative;
+    overflow:hidden;
+  }
+  .eyebrow{
+    display:inline-block;
+    letter-spacing:2px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--mint);
+    background:rgba(79,163,199,0.14);
+    padding:6px 16px;
+    border-radius:20px;
+  }
+  .badge-live{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--mint);
+    color:var(--navy);
+    font-weight:700;
+    font-size:14px;
+    padding:8px 18px;
+    border-radius:24px;
+    letter-spacing:1px;
+  }
+  .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:#FF5C5C;
+    box-shadow:0 0 0 4px rgba(255,92,92,0.25);
+  }
+  .icon-wrap{ display:inline-flex; align-items:center; justify-content:center; }
+
+  /* 1. HERO */
+  #sec-hero{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, #16231C 100%);
+    padding:90px 70px 100px;
+    color:#fff;
+  }
+  #sec-hero .brandmark{
+    font-family:'Noto Serif KR',serif;
+    font-size:22px;
+    letter-spacing:6px;
+    color:var(--mint);
+    margin-bottom:34px;
+  }
+  #sec-hero h1{
+    font-size:42px;
+    line-height:1.45;
+    margin:22px 0 18px;
+    color:#fff;
+  }
+  #sec-hero p.sub{
+    font-size:18px;
+    line-height:1.7;
+    color:#CBD6CD;
+    max-width:620px;
+  }
+  #sec-hero .decor{
+    position:absolute; right:-60px; bottom:-60px;
+    width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, rgba(79,163,199,0.20), rgba(79,163,199,0) 70%);
+  }
+
+  /* 2. PRICING */
+  #sec-price{
+    background:var(--ice);
+    padding:70px 70px 80px;
+    text-align:center;
+  }
+  #sec-price h2{ font-size:28px; margin-bottom:10px; }
+  #sec-price .desc{ color:var(--gray); font-size:15px; margin-bottom:44px; }
+  .price-row{
+    display:flex; justify-content:center; align-items:center; gap:26px; flex-wrap:wrap;
+  }
+  .price-box{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:26px 30px; min-width:190px;
+  }
+  .price-box .label{ font-size:13px; color:var(--gray); margin-bottom:10px; font-weight:700;}
+  .price-box .amount{ font-size:22px; font-weight:700; color:var(--navy); white-space:nowrap; }
+  .price-box.strike .amount{ text-decoration:line-through; color:#A7B2B6; font-weight:500; font-size:19px;}
+  .price-box.main .amount{ color:var(--navy); }
+  .arrow{ font-size:22px; color:var(--gray); }
+  .price-box.early{
+    background:var(--navy); border:none; position:relative; padding:30px 34px;
+    box-shadow:0 14px 30px rgba(27,42,56,0.25); min-width:230px;
+  }
+  .price-box.early .label{ color:var(--mint); }
+  .price-box.early .amount{ color:#fff; font-size:30px; }
+  .price-box.early .until{ color:var(--gold); font-size:13px; font-weight:700; margin-top:8px; }
+  .ribbon{
+    position:absolute; top:-14px; right:-14px;
+    background:var(--gold); color:#fff; font-size:12px; font-weight:700;
+    padding:6px 14px; border-radius:20px; letter-spacing:0.5px;
+  }
+
+  /* 3. BENEFITS */
+  #sec-benefit{ background:#fff; padding:80px 70px; }
+  #sec-benefit .head{ text-align:center; margin-bottom:50px; }
+  #sec-benefit h2{ font-size:28px; }
+  .grid6{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  .bcard{
+    border:1px solid var(--line); border-radius:16px; padding:28px 20px;
+    text-align:center; background:var(--ice);
+  }
+  .bcard .icon{ margin-bottom:14px; color:var(--navy); }
+  .bcard .title{ font-weight:700; font-size:15px; margin-bottom:8px; }
+  .bcard .desc{ font-size:12.5px; color:var(--gray); line-height:1.6; }
+
+  /* 4. CONTACT */
+  #sec-contact{ background:var(--navy); padding:60px 70px; color:#fff; }
+  .contact-row{ display:flex; gap:20px; flex-wrap:wrap; }
+  .ccard{
+    flex:1; min-width:220px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+    border-radius:16px; padding:30px 26px;
+  }
+  .ccard .k{ color:var(--mint); font-weight:700; font-size:13px; letter-spacing:1px; margin-bottom:10px;}
+  .ccard .v{ font-size:20px; font-weight:700; }
+  .ccard .d{ font-size:13px; color:#C7D3C9; margin-top:8px; }
+
+  /* 5. LIVE */
+  #sec-live{ background:var(--ice); padding:80px 70px; display:flex; gap:50px; align-items:center; flex-wrap:wrap; }
+  #sec-live .txt{ flex:1.1; min-width:280px; }
+  #sec-live h2{ font-size:27px; line-height:1.5; margin:16px 0 18px; }
+  #sec-live p{ font-size:15px; line-height:1.85; color:var(--gray); }
+  .phone{
+    width:220px; height:320px; border-radius:28px; background:var(--navy);
+    padding:14px; box-shadow:0 20px 40px rgba(27,42,56,0.25); flex-shrink:0;
+  }
+  .phone-screen{
+    width:100%; height:100%; border-radius:18px;
+    background:linear-gradient(180deg,#16301F,#2F5D45);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    position:relative;
+  }
+  .phone-screen .live-tag{
+    position:absolute; top:16px; left:16px;
+    background:#FF5C5C; color:#fff; font-size:11px; font-weight:700;
+    padding:4px 10px; border-radius:10px;
+  }
+  .phone-screen .play{
+    width:56px; height:56px; border-radius:50%; background:rgba(79,163,199,0.9);
+    display:flex; align-items:center; justify-content:center; color:#fff;
+  }
+  .phone-screen .cap{ color:#CBD6CD; font-size:12px; text-align:center; padding:0 16px; }
+
+  /* 6. STANDARDS */
+  #sec-standard{ background:#fff; padding:80px 70px; }
+  #sec-standard .head{ text-align:center; margin-bottom:44px; }
+  .srow{
+    display:flex; gap:22px; align-items:flex-start; padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .srow:last-child{ border-bottom:none; }
+  .snum{
+    width:38px; height:38px; border-radius:50%; background:var(--navy); color:var(--mint);
+    display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0;
+  }
+  .stxt .t{ font-weight:700; font-size:16px; margin-bottom:4px; }
+  .stxt .d{ font-size:13.5px; color:var(--gray); line-height:1.6; }
+
+  /* 7. REVIEWS */
+  #sec-review{ background:var(--ice); padding:80px 70px; text-align:center; }
+  #sec-review .head{ margin-bottom:20px; }
+  #sec-review .note{ font-size:14px; color:var(--gray); margin-bottom:40px; }
+  .rgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .rslot{
+    aspect-ratio:1/1; border:2px dashed #B9CBC9; border-radius:14px;
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;
+    color:#8FA3A0; background:#fff;
+  }
+  .rslot .t{ font-size:12px; }
+
+  /* CURRICULUM */
+  .curri{ background:#fff; padding:80px 70px; }
+  .curri .head{ text-align:center; margin-bottom:40px; }
+  table.ctable{ width:100%; border-collapse:collapse; }
+  table.ctable th{
+    background:var(--navy); color:#fff; font-size:13px; padding:14px 16px; text-align:left;
+  }
+  table.ctable td{
+    padding:14px 16px; font-size:13.5px; border-bottom:1px solid var(--line);
+  }
+  table.ctable tr:nth-child(even) td{ background:var(--ice); }
+  .grade-pill{
+    display:inline-block; text-align:center; padding:4px 12px; border-radius:12px;
+    background:var(--mint-soft); color:var(--navy); font-weight:700; font-size:12px;
+    white-space:nowrap;
+  }
+
+  /* GRADING SYSTEM */
+  #sec-grading{ background:var(--navy); padding:70px 70px; color:#fff; text-align:center; }
+  #sec-grading h2{ font-size:25px; margin-bottom:18px; }
+  #sec-grading p{ font-size:14px; color:#CBD6CD; line-height:1.8; max-width:620px; margin:0 auto 34px; }
+  .scale{ display:flex; height:14px; border-radius:8px; overflow:hidden; margin:0 20px 10px; }
+  .scale div{ flex:1; }
+  .scale-labels{ display:flex; justify-content:space-between; font-size:11px; color:#A9BBAE; padding:0 16px; }
+
+  /* PROCESS */
+  #sec-process{ background:#fff; padding:80px 60px; }
+  #sec-process .head{ text-align:center; margin-bottom:50px; }
+  .pflow{ display:flex; align-items:flex-start; flex-wrap:wrap; justify-content:center; }
+  .pstep{ flex:1; min-width:100px; text-align:center; padding:0 6px; }
+  .pnum{
+    width:44px; height:44px; border-radius:50%; background:var(--ice); border:2px solid var(--mint);
+    color:var(--navy); font-weight:700; display:flex; align-items:center; justify-content:center;
+    margin:0 auto 12px;
+  }
+  .pstep .t{ font-size:13px; font-weight:700; line-height:1.4; }
+  .parrow{ color:#C4CDD0; font-size:20px; padding-top:10px; }
+
+  /* JUSTIFICATION */
+  #sec-just{ background:var(--ice); padding:80px 80px; }
+  #sec-just h2{ font-size:24px; margin-bottom:22px; text-align:center; }
+  #sec-just p{ font-size:15px; line-height:1.95; color:#3A4A50; }
+  #sec-just .quote{
+    margin-top:28px; padding:22px 26px; background:#fff; border-left:5px solid var(--gold);
+    border-radius:8px; font-weight:700; font-size:15px; color:var(--navy);
+  }
+
+  /* REFUND */
+  #sec-refund{ background:#fff; padding:80px 70px; }
+  #sec-refund .head{ text-align:center; margin-bottom:16px; }
+  #sec-refund .note{ text-align:center; font-size:12.5px; color:#B08A2E; margin-bottom:34px; background:#FBF3E1; padding:10px; border-radius:8px; }
+  table.rtable{ width:100%; border-collapse:collapse; }
+  table.rtable th{ background:var(--navy); color:#fff; padding:12px 16px; font-size:13px; text-align:left; }
+  table.rtable td{ padding:12px 16px; font-size:13.5px; border-bottom:1px solid var(--line); }
+
+  /* CTA */
+  #sec-cta{
+    background:linear-gradient(135deg, var(--navy), #16231C);
+    padding:90px 70px; text-align:center; color:#fff;
+  }
+  #sec-cta h2{ font-size:26px; line-height:1.6; margin-bottom:14px; }
+  #sec-cta p{ color:#CBD6CD; font-size:14px; margin-bottom:34px; }
+  .cta-btn{
+    display:inline-block; background:var(--gold); color:#2F5D45; font-weight:700;
+    padding:16px 40px; border-radius:30px; font-size:16px; margin-bottom:30px;
+  }
+  .cta-contacts{ font-size:13px; color:#A9BBAE; }
+</style>
+</helmet>
+
+<div style="width:100%; min-height:100vh; background:#ffffff;">
+<div style="max-width:860px; margin:0 auto;">
+
+<!-- 1. HERO -->
+<section class="sec" id="sec-hero">
+  <div class="brandmark">배 움 스 키</div>
+  <span class="badge-live"><span class="dot"></span> LIVE · 실시간 방송</span>
+  <h1>아이가 배워가는 순간,<br>그대로 지켜봐주세요.</h1>
+  <p class="sub">정성 어린 강사진의 1:1 밀착 지도 + 실시간 방송으로<br>확인하는 우리 아이의 성장 — 배움스키스쿨</p>
+  <div class="decor"></div>
+</section>
+
+<!-- 2. PRICING -->
+<section class="sec" id="sec-price">
+  <span class="eyebrow">얼리버드 이벤트</span>
+  <h2 style="margin-top:16px;">11월 30일까지, 가장 낮은 가격</h2>
+  <p class="desc">사전예약 기간 이후에는 정상 판매가로 전환됩니다</p>
+  <div class="price-row">
+    <div class="price-box strike">
+      <div class="label">정가</div>
+      <div class="amount">149,000원</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="price-box main">
+      <div class="label">판매가</div>
+      <div class="amount">129,000원</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="price-box early">
+      <div class="ribbon">얼리버드</div>
+      <div class="label">사전예약가</div>
+      <div class="amount">99,000원</div>
+      <div class="until">11월 30일까지 한정</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. BENEFITS -->
+<section class="sec" id="sec-benefit">
+  <div class="head">
+    <span class="eyebrow">혜택 안내</span>
+    <h2 style="margin-top:14px;">포함 혜택</h2>
+  </div>
+  <div class="grid6">
+    <div class="bcard"><div class="icon icon-wrap"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 20h.01"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M5 13a10 10 0 0 1 14 0"/></svg></div><div class="title">실시간 라이브 방송</div><div class="desc">강습 전 과정을 스마트폰으로 실시간 시청</div></div>
+    <div class="bcard"><div class="icon icon-wrap"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M2 8l10-4 10 4-10 4-10-4z"/><path d="M6 10.5V16c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-5.5"/><path d="M22 8v6"/></svg></div><div class="title">공인 지도자 배정</div><div class="desc">대한스키지도자연맹 자격 보유 강사</div></div>
+    <div class="bcard"><div class="icon icon-wrap"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.2"/></svg></div><div class="title">사진·영상 피드백</div><div class="desc">강습 후 주요 장면 캡처 전달</div></div>
+    <div class="bcard"><div class="icon icon-wrap"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div><div class="title">상해보험 가입</div><div class="desc">강습 중 안전사고 보장</div></div>
+    <div class="bcard"><div class="icon icon-wrap"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 5h16v10H9l-4 4V5z"/></svg></div><div class="title">카카오톡 실시간 상담</div><div class="desc">예약부터 당일 컨디션 공유까지</div></div>
+    <div class="bcard"><div class="icon icon-wrap"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="8.5" y="2.5" width="7" height="3" rx="1"/><path d="M8.5 11h7M8.5 15h7"/></svg></div><div class="title">진행 절차 사전 안내</div><div class="desc">예약~강습 종료까지 전 과정 안내</div></div>
+  </div>
+</section>
+
+<!-- 4. CONTACT -->
+<section class="sec" id="sec-contact">
+  <div class="contact-row">
+    <div class="ccard">
+      <div class="k">KAKAO CHANNEL</div>
+      <div class="v">배움스키스쿨 채널 추가</div>
+      <div class="d">예약 전 궁금한 점, 실시간 상담</div>
+    </div>
+    <div class="ccard">
+      <div class="k">CALL</div>
+      <div class="v">010-XXXX-XXXX</div>
+      <div class="d">평일 · 주말 상담 가능</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. LIVE DIFFERENTIATION -->
+<section class="sec" id="sec-live">
+  <div class="txt">
+    <span class="eyebrow">배움스키만의 방식</span>
+    <h2>함께 타지 않아도,<br>배워가는 순간 곁에 있어줄게요.</h2>
+    <p>강사가 액션캠을 가슴(명치) 위치에 착용하고, 강습 시간 내내 실시간으로 스트리밍합니다. 부모님은 발송받은 링크를 클릭하기만 하면 별도 앱 설치 없이 스마트폰으로 바로 시청하실 수 있습니다.</p>
+  </div>
+  <div class="phone">
+    <div class="phone-screen">
+      <span class="live-tag">● LIVE</span>
+      <div class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="cap">우리 아이 배우는 모습 실시간 시청 중</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. STANDARDS -->
+<section class="sec" id="sec-standard">
+  <div class="head">
+    <span class="eyebrow">우리의 기준</span>
+    <h2 style="margin-top:14px;">아이를 대하는 우리의 기준</h2>
+  </div>
+  <div class="srow"><div class="snum">1</div><div class="stxt"><div class="t">자격 기준</div><div class="d">대한스키지도자연맹 공인 지도자 자격을 보유한 강사만 배정합니다</div></div></div>
+  <div class="srow"><div class="snum">2</div><div class="stxt"><div class="t">안전 기준</div><div class="d">전 강습생 헬멧 착용을 원칙으로 하며, 사고 대응 매뉴얼에 따라 즉시 조치합니다</div></div></div>
+  <div class="srow"><div class="snum">3</div><div class="stxt"><div class="t">눈높이 기준</div><div class="d">성인 강습이 아닌 어린이 눈높이의 언어와 속도로 지도합니다</div></div></div>
+  <div class="srow"><div class="snum">4</div><div class="stxt"><div class="t">소통 기준</div><div class="d">강습 전후 카카오톡으로 아이의 컨디션과 진도를 공유합니다</div></div></div>
+  <div class="srow"><div class="snum">5</div><div class="stxt"><div class="t">실력 기준</div><div class="d">정해진 진도가 아니라 아이의 습득 속도에 맞춰 수업을 조정합니다</div></div></div>
+</section>
+
+<!-- 7. REVIEWS -->
+<section class="sec" id="sec-review">
+  <div class="head">
+    <span class="eyebrow">리뷰</span>
+    <h2 style="margin-top:14px;">리뷰 &amp; 후기</h2>
+  </div>
+  <div class="note">실제 수강 후기 사진이 이 자리에 채워질 예정입니다</div>
+  <div class="rgrid">
+    <div class="rslot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/></svg><div class="t">리뷰 사진 1</div></div>
+    <div class="rslot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/></svg><div class="t">리뷰 사진 2</div></div>
+    <div class="rslot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/></svg><div class="t">리뷰 사진 3</div></div>
+    <div class="rslot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/></svg><div class="t">리뷰 사진 4</div></div>
+    <div class="rslot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/></svg><div class="t">리뷰 사진 5</div></div>
+    <div class="rslot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5.5-5.5L9 17"/></svg><div class="t">리뷰 사진 6</div></div>
+  </div>
+</section>
+
+<!-- 8. CURRICULUM SKI -->
+<section class="sec curri" id="sec-curri-ski">
+  <div class="head">
+    <span class="eyebrow">커리큘럼 · 스키</span>
+    <h2 style="margin-top:14px;">커리큘럼 — 스키</h2>
+  </div>
+  <table class="ctable">
+    <tr><th style="width:90px; white-space:nowrap;">등급</th><th style="width:180px;">기술 명칭</th><th>설명</th></tr>
+    <tr><td><span class="grade-pill">10급</span></td><td>스노우플라우</td><td>완만한 사면에서 제동하며 정지하기</td></tr>
+    <tr><td><span class="grade-pill">9급</span></td><td>스노우플라우 활강</td><td>직활강 자세에서 스스로 속도 제어하기</td></tr>
+    <tr><td><span class="grade-pill">8급</span></td><td>스노우플라우턴</td><td>A자 형태를 유지하며 방향 전환하기</td></tr>
+    <tr><td><span class="grade-pill">7급</span></td><td>스템턴</td><td>다리를 벌려 방향을 바꾸는 턴 익히기</td></tr>
+    <tr><td><span class="grade-pill">6급</span></td><td>베이직 숏턴</td><td>짧은 리듬으로 연속 방향 전환하기</td></tr>
+    <tr><td><span class="grade-pill">5급</span></td><td>베이직 롱턴</td><td>넓은 반경으로 안정적인 턴 연결하기</td></tr>
+    <tr><td><span class="grade-pill">4급</span></td><td>다이나믹 숏턴</td><td>체중 이동을 활용한 빠른 리듬의 턴</td></tr>
+    <tr><td><span class="grade-pill">3급</span></td><td>다이나믹 롱턴</td><td>속도를 유지하며 큰 반경으로 활강하기</td></tr>
+    <tr><td><span class="grade-pill">2급</span></td><td>카빙 숏턴</td><td>엣지를 세워 눈을 깎아내는 짧은 턴</td></tr>
+    <tr><td><span class="grade-pill">1급</span></td><td>카빙 롱턴 / 종합활강</td><td>엣지 컨트롤로 전 코스를 완주하는 최상급 기술</td></tr>
+  </table>
+</section>
+
+<!-- 8-1. CURRICULUM BOARD -->
+<section class="sec curri" id="sec-curri-board">
+  <div class="head">
+    <span class="eyebrow">커리큘럼 · 보드</span>
+    <h2 style="margin-top:14px;">커리큘럼 — 보드</h2>
+  </div>
+  <table class="ctable">
+    <tr><th style="width:90px;">단계</th><th style="width:180px;">기술 명칭</th><th>설명</th></tr>
+    <tr><td><span class="grade-pill">1단계</span></td><td>스트레이트 러닝</td><td>평지에서 직진 자세 익히기</td></tr>
+    <tr><td><span class="grade-pill">2단계</span></td><td>사이드슬리핑</td><td>엣지를 이용해 옆으로 미끄러지며 제동하기</td></tr>
+    <tr><td><span class="grade-pill">3단계</span></td><td>힐사이드/토사이드 턴</td><td>뒤꿈치·앞꿈치 엣지를 번갈아 사용해 방향 전환하기</td></tr>
+    <tr><td><span class="grade-pill">4단계</span></td><td>베이직 턴</td><td>힐사이드-토사이드를 연결한 연속 턴</td></tr>
+    <tr><td><span class="grade-pill">5단계</span></td><td>카빙턴</td><td>엣지를 세워 눈을 깎아내는 상급 턴</td></tr>
+  </table>
+</section>
+
+<!-- 9. GRADING SYSTEM -->
+<section class="sec" id="sec-grading">
+  <span class="eyebrow" style="background:rgba(79,163,199,0.18);">주니어 기술등급제</span>
+  <h2 style="margin-top:18px;">주니어기술등급제 안내</h2>
+  <p>배움스키스쿨의 모든 커리큘럼은 대한스키지도자연맹 공인 주니어기술등급제(1급~10급) 기준으로 진행됩니다. 강습 종료 후 현재 등급을 안내해드리며, 다음 시즌에도 이어서 지도받을 수 있습니다.</p>
+  <div class="scale">
+    <div style="background:#EAF6FB;"></div><div style="background:#CFEAF3;"></div><div style="background:#A9D9DE;"></div>
+    <div style="background:#7EC8A9;"></div><div style="background:#5BAE84;"></div><div style="background:#438E68;"></div>
+    <div style="background:#35714F;"></div><div style="background:#2F5D45;"></div>
+  </div>
+  <div class="scale-labels"><span>10급 (입문)</span><span>&nbsp;</span><span>&nbsp;</span><span>1급 (최상급)</span></div>
+</section>
+
+<!-- 10. PROCESS -->
+<section class="sec" id="sec-process">
+  <div class="head">
+    <span class="eyebrow">진행 절차</span>
+    <h2 style="margin-top:14px;">진행 절차 안내</h2>
+  </div>
+  <div class="pflow">
+    <div class="pstep"><div class="pnum">1</div><div class="t">예약 완료</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="pnum">2</div><div class="t">카카오톡<br>확인 안내</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="pnum">3</div><div class="t">현장 접수 &amp;<br>장비 대여</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="pnum">4</div><div class="t">라이브 방송<br>링크 발송</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="pnum">5</div><div class="t">강습 진행<br>(실시간 시청)</div></div>
+    <div class="parrow">›</div>
+    <div class="pstep"><div class="pnum">6</div><div class="t">사진·영상<br>피드백 전달</div></div>
+  </div>
+</section>
+
+<!-- 11. JUSTIFICATION -->
+<section class="sec" id="sec-just">
+  <h2>왜 129,000원인가요?</h2>
+  <p>129,000원은 곤지암·지산권 스키강습 평균가(약 120,000~160,000원대)와 비슷한 수준이지만, 실시간 라이브 방송이라는 차별화된 서비스가 포함된 가격입니다. 리프트 탑승 제한으로 아이를 직접 지켜볼 수 없었던 아쉬움을 해결하는 데 드는 비용까지 고려하면, 배움스키스쿨의 가격은 합리적인 수준입니다.</p>
+  <div class="quote">11월 30일까지의 얼리버드 사전예약가 99,000원은 이 모든 혜택을 가장 낮은 가격에 경험할 수 있는 한정 기회입니다.</div>
+</section>
+
+<!-- 12. REFUND -->
+<section class="sec" id="sec-refund">
+  <div class="head">
+    <span class="eyebrow">환불 정책 안내</span>
+    <h2 style="margin-top:14px;">환불 정책</h2>
+  </div>
+  <div class="note">예시 기준안입니다 — 실제 운영 방침에 맞춰 확정 후 반영해주세요</div>
+  <table class="rtable">
+    <tr><th>기준</th><th>환불 비율</th></tr>
+    <tr><td>강습일 기준 7일 전</td><td>100% 환불</td></tr>
+    <tr><td>강습일 기준 3일 전</td><td>50% 환불</td></tr>
+    <tr><td>강습 전일 · 당일</td><td>환불 불가</td></tr>
+  </table>
+</section>
+
+<!-- 13. CTA -->
+<section class="sec" id="sec-cta">
+  <div class="eyebrow" style="background:rgba(79,163,199,0.18);">배움스키스쿨</div>
+  <h2 style="margin-top:18px;">아이가 배워가는 순간,<br>그대로 지켜봐주세요.</h2>
+  <p>지금 얼리버드 사전예약가 99,000원으로 예약하세요 (11/30까지)</p>
+  <div class="cta-btn">지금 예약하기</div>
+  <div class="cta-contacts">카카오톡 채널 추가 &nbsp;|&nbsp; 전화상담 010-XXXX-XXXX</div>
+</section>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":860,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
