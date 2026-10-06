@@ -1,0 +1,725 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>청육담</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --surface:#F6EEDB;
+    --surface-alt:#ECDFC0;
+    --surface-panel:#FBF6EA;
+    --ink:#241B12;
+    --ink-soft:#5D4C39;
+    --ink-faint:#8C7A63;
+    --blue:#1F3F73;
+    --blue-soft:#33578E;
+    --red:#B33B2E;
+    --red-soft:#C55B4C;
+    --gold:#B98527;
+    --gold-soft:#D5A748;
+    --green:#5B7A52;
+    --line: rgba(36,27,18,0.16);
+    --line-strong: rgba(36,27,18,0.30);
+    --shadow: 0 24px 48px -28px rgba(36,27,18,0.40);
+    --hide:#DCB98D;
+    --hide-soft:#EDD8B4;
+    --radius-lg:30px;
+    --radius-md:18px;
+    --radius-sm:10px;
+    --font-display:'Song Myung','Noto Serif KR',serif;
+    --font-serif:'Noto Serif KR',serif;
+    --font-body:'Noto Sans KR',system-ui,-apple-system,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --surface:#161009;
+      --surface-alt:#1F170E;
+      --surface-panel:#221A10;
+      --ink:#F2E7CE;
+      --ink-soft:#CDB98F;
+      --ink-faint:#93815F;
+      --blue:#7096D3;
+      --blue-soft:#88ABDF;
+      --red:#E17F6C;
+      --red-soft:#E89784;
+      --gold:#E4BA61;
+      --gold-soft:#EDCC80;
+      --green:#8DAC81;
+      --line: rgba(242,231,206,0.14);
+      --line-strong: rgba(242,231,206,0.26);
+      --shadow: 0 24px 52px -24px rgba(0,0,0,0.65);
+      --hide:#8A6947;
+      --hide-soft:#5F4930;
+    }
+  }
+  :root[data-theme="dark"]{
+    --surface:#161009;
+    --surface-alt:#1F170E;
+    --surface-panel:#221A10;
+    --ink:#F2E7CE;
+    --ink-soft:#CDB98F;
+    --ink-faint:#93815F;
+    --blue:#7096D3;
+    --blue-soft:#88ABDF;
+    --red:#E17F6C;
+    --red-soft:#E89784;
+    --gold:#E4BA61;
+    --gold-soft:#EDCC80;
+    --green:#8DAC81;
+    --line: rgba(242,231,206,0.14);
+    --line-strong: rgba(242,231,206,0.26);
+    --shadow: 0 24px 52px -24px rgba(0,0,0,0.65);
+    --hide:#8A6947;
+    --hide-soft:#5F4930;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--surface);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:400;text-wrap:balance;margin:0;}
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:1120px;margin-inline:auto;padding-inline:24px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-serif);font-weight:600;font-size:13px;
+    letter-spacing:.14em;color:var(--red);text-transform:uppercase;
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--red);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-body);font-weight:600;font-size:15px;
+    padding:14px 26px;border-radius:999px;border:1.5px solid transparent;
+    cursor:pointer;transition:transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease;
+    text-decoration:none;white-space:nowrap;
+  }
+  .btn-primary{background:var(--blue);color:var(--surface-panel);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow);}
+  .btn-outline{border-color:var(--line-strong);color:var(--ink);background:transparent;}
+  .btn-outline:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+    background:color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:padding .3s ease;
+  }
+  .nav-inner{
+    max-width:1120px;margin-inline:auto;padding:18px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    transition:padding .3s ease;
+  }
+  nav.shrink .nav-inner{padding-block:11px;}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);}
+  .brand svg{width:34px;height:34px;flex:none;}
+  .brand span{font-family:var(--font-display);font-size:20px;letter-spacing:.02em;}
+  .nav-links{display:flex;gap:28px;flex-wrap:wrap;}
+  .nav-links a{
+    font-size:14px;font-weight:500;text-decoration:none;color:var(--ink-soft);
+    position:relative;padding-block:4px;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;
+    background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{transform:scaleX(1);}
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{padding-block:64px 88px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+  }
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;gap:40px;} }
+  .hero h1{font-size:clamp(34px,5vw,58px);line-height:1.28;}
+  .hero h1 em{font-style:normal;color:var(--red);}
+  .hero-lede{
+    margin-top:22px;font-size:17px;color:var(--ink-soft);max-width:46ch;line-height:1.8;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;}
+  .hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:40px;}
+  .hero-tag{
+    font-size:12.5px;font-weight:600;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:999px;padding:6px 14px;
+    background:var(--surface-panel);
+  }
+  .hero-art{position:relative;}
+  .hero-ring{
+    position:absolute;inset:0;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .spin-slow{animation:spin 90s linear infinite;transform-origin:210px 176px;}
+    .bob{animation:bob 6s ease-in-out infinite;}
+    .bob-slow{animation:bob 7.5s ease-in-out infinite 1s;}
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+
+  /* ---------- section shells ---------- */
+  section{padding-block:clamp(64px,9vw,110px);position:relative;}
+  .panel{background:var(--surface-alt);}
+  .hinge{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    padding-block:2px;
+  }
+  .hinge::before,.hinge::after{content:"";flex:1;height:1px;background:var(--line-strong);}
+  .hinge i{
+    width:9px;height:9px;border:1.5px solid var(--gold);transform:rotate(45deg);flex:none;
+  }
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);margin-top:14px;line-height:1.35;}
+  .section-head p{margin-top:16px;color:var(--ink-soft);font-size:16px;line-height:1.8;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .spin-slow,.bob,.bob-slow{animation:none;}
+  }
+
+  /* ---------- story ---------- */
+  .story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start;}
+  @media (max-width:860px){ .story-grid{grid-template-columns:1fr;} }
+  .story-figure{
+    background:var(--surface-panel);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:36px;box-shadow:var(--shadow);
+  }
+  .story-figure .role{font-family:var(--font-serif);font-weight:600;color:var(--red);font-size:14px;letter-spacing:.04em;}
+  .story-figure h3{font-size:22px;margin-top:10px;}
+  .story-figure p{margin-top:14px;color:var(--ink-soft);font-size:15px;line-height:1.8;}
+  .story-list{margin-top:20px;display:flex;flex-direction:column;gap:22px;}
+  .story-item{display:flex;gap:18px;}
+  .story-item .mark{
+    flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line-strong);
+    display:flex;align-items:center;justify-content:center;color:var(--blue);
+  }
+  .story-item h4{font-family:var(--font-serif);font-size:16.5px;font-weight:600;margin:0 0 6px;}
+  .story-item p{color:var(--ink-soft);font-size:15px;line-height:1.75;}
+
+  /* ---------- transparency ---------- */
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media (max-width:860px){ .trust-grid{grid-template-columns:repeat(2,1fr);} }
+  .trust-card{
+    background:var(--surface-panel);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:26px 22px;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .trust-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--line-strong);}
+  .trust-card svg{width:30px;height:30px;color:var(--blue);}
+  .trust-card h4{font-family:var(--font-serif);font-weight:600;font-size:16px;margin:14px 0 8px;}
+  .trust-card p{font-size:14px;color:var(--ink-soft);line-height:1.7;}
+
+  /* ---------- signature ---------- */
+  .sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  @media (max-width:860px){ .sig-grid{grid-template-columns:1fr;} }
+  .sig-badge{
+    display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--surface-panel);
+    font-size:12.5px;font-weight:700;letter-spacing:.06em;padding:6px 14px;border-radius:999px;
+  }
+  .sig-copy h2{margin-top:16px;font-size:clamp(26px,3.6vw,40px);}
+  .sig-copy p{margin-top:18px;color:var(--ink-soft);font-size:16px;line-height:1.85;max-width:48ch;}
+  .sig-points{margin-top:26px;display:flex;flex-direction:column;gap:14px;}
+  .sig-points li{display:flex;gap:12px;list-style:none;font-size:15px;color:var(--ink-soft);}
+  .sig-points li::before{content:"";flex:none;width:7px;height:7px;margin-top:8px;background:var(--gold);border-radius:1px;transform:rotate(45deg);}
+  .sig-points b{color:var(--ink);font-weight:600;}
+
+  /* ---------- products ---------- */
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media (max-width:860px){ .prod-grid{grid-template-columns:1fr;} }
+  .prod-card{
+    background:var(--surface-panel);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:30px;display:flex;flex-direction:column;gap:16px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .prod-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+  .prod-icon{width:52px;height:52px;border-radius:14px;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;}
+  .prod-icon svg{width:28px;height:28px;color:var(--blue);}
+  .prod-card h3{font-size:19px;font-family:var(--font-serif);font-weight:600;}
+  .prod-card p{color:var(--ink-soft);font-size:14.5px;line-height:1.75;}
+  .prod-tag{font-size:12.5px;font-weight:600;color:var(--gold);letter-spacing:.03em;}
+
+  /* ---------- order ---------- */
+  .order-steps{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;counter-reset:step;
+  }
+  @media (max-width:860px){ .order-steps{grid-template-columns:1fr;} }
+  .order-step{position:relative;padding:8px 18px 8px 0;}
+  .order-step .num{
+    width:44px;height:44px;border-radius:50%;background:var(--blue);color:var(--surface-panel);
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-weight:700;font-size:17px;
+    position:relative;z-index:2;
+  }
+  .order-step h4{margin-top:16px;font-family:var(--font-serif);font-weight:600;font-size:16px;}
+  .order-step p{margin-top:8px;font-size:14px;color:var(--ink-soft);line-height:1.7;}
+  .order-steps::before{
+    content:"";position:absolute;top:22px;left:5%;right:5%;height:1px;
+    background-image:repeating-linear-gradient(90deg, var(--line-strong) 0 6px, transparent 6px 14px);
+    z-index:1;
+  }
+  @media (max-width:860px){ .order-steps::before{display:none;} }
+
+  .order-panel{
+    margin-top:56px;background:var(--surface-panel);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:clamp(28px,4vw,44px);box-shadow:var(--shadow);
+    display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  }
+  @media (max-width:760px){ .order-panel{grid-template-columns:1fr;} }
+  .channel{display:flex;flex-direction:column;gap:12px;}
+  .channel h4{font-family:var(--font-serif);font-weight:600;font-size:17px;display:flex;align-items:center;gap:10px;}
+  .channel h4 svg{width:20px;height:20px;color:var(--blue);}
+  .channel p{font-size:14.5px;color:var(--ink-soft);line-height:1.75;}
+  .copy-row{
+    margin-top:6px;display:flex;align-items:center;gap:10px;
+    background:var(--surface-alt);border:1px solid var(--line);border-radius:999px;
+    padding:8px 8px 8px 18px;width:fit-content;
+  }
+  .copy-row span{font-weight:700;font-size:14.5px;letter-spacing:.02em;}
+  .copy-btn{
+    border:none;background:var(--ink);color:var(--surface-panel);font-size:12.5px;font-weight:600;
+    border-radius:999px;padding:8px 14px;cursor:pointer;transition:background .2s ease, transform .2s ease;
+  }
+  .copy-btn:hover{transform:translateY(-1px);}
+  .copy-btn.copied{background:var(--green);}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding-block:44px;}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+  .foot-inner .brand span{font-size:17px;}
+  .foot-note{font-size:13px;color:var(--ink-faint);}
+</style>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="4" y="4" width="36" height="36" rx="6" transform="rotate(-6 22 22)" fill="var(--red)"/>
+        <text x="22" y="29" text-anchor="middle" font-family="'Song Myung',serif" font-size="20" fill="var(--surface-panel)" transform="rotate(-6 22 22)">청</text>
+      </svg>
+      <span>청육담</span>
+    </a>
+    <div class="nav-links">
+      <a href="#story">브랜드 이야기</a>
+      <a href="#transparency">투명한 유통</a>
+      <a href="#signature">시그니처</a>
+      <a href="#products">라인업</a>
+      <a href="#order">주문 안내</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">장인과 함께 짓는 정육 한 상</span>
+        <h1>정직한 손끝에서,<br><em>맑게</em> 이어지는 고기 한 점</h1>
+        <p class="hero-lede">
+          청육담은 도매 유통의 군더더기를 걷어내고, 장인의 손질부터 콜드체인 포장까지
+          모든 과정을 투명하게 공개하는 정육 브랜드입니다. 정육점을 지켜온 장인과
+          두 사람의 시선이 만나, 맑고 정직한 고기 이야기를 짓습니다.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#order">주문 안내 보기</a>
+          <a class="btn btn-outline" href="#story">브랜드 이야기 읽기</a>
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">장인 직접 손질</span>
+          <span class="hero-tag">도매상 없는 직소싱</span>
+          <span class="hero-tag">콜드체인 배송</span>
+          <span class="hero-tag">시그니처 고기케이크</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <svg viewBox="0 0 420 340" role="img" aria-label="민화풍으로 그린 청육담의 소 캐릭터">
+          <circle class="spin-slow" cx="210" cy="176" r="164" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="1 11" stroke-linecap="round"/>
+          <circle cx="210" cy="176" r="146" fill="var(--surface-panel)" stroke="var(--line)" stroke-width="1"/>
+
+          <path d="M60 90 C 90 70, 120 78, 118 100 C 140 90, 158 104, 142 118 C 120 128, 84 118, 66 106 Z" fill="var(--blue)" opacity=".14"/>
+          <path d="M300 70 C 330 56, 358 68, 350 88 C 372 84, 384 100, 364 112 C 340 120, 308 106, 294 92 Z" fill="var(--red)" opacity=".12"/>
+
+          <path d="M40 268 C 120 244, 300 244, 380 268 L 380 300 L 40 300 Z" fill="var(--surface-alt)"/>
+          <g class="bob-slow">
+            <path d="M64 262 q10 -16 22 -2" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M330 266 q10 -16 22 -2" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>
+          </g>
+
+          <g class="bob">
+            <path d="M150 246 q54 20 108 -4" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+
+            <rect x="150" y="192" width="26" height="56" rx="12" fill="var(--hide)" stroke="var(--ink)" stroke-width="3.5"/>
+            <rect x="188" y="196" width="26" height="58" rx="12" fill="var(--hide)" stroke="var(--ink)" stroke-width="3.5"/>
+            <rect x="232" y="196" width="26" height="58" rx="12" fill="var(--hide)" stroke="var(--ink)" stroke-width="3.5"/>
+            <rect x="268" y="192" width="26" height="56" rx="12" fill="var(--hide)" stroke="var(--ink)" stroke-width="3.5"/>
+
+            <ellipse cx="222" cy="188" rx="104" ry="60" fill="var(--hide)" stroke="var(--ink)" stroke-width="4.5"/>
+
+            <rect x="150" y="150" width="130" height="46" rx="14" fill="var(--red)" stroke="var(--ink)" stroke-width="3"/>
+            <circle cx="168" cy="173" r="5.5" fill="var(--blue)"/>
+            <circle cx="196" cy="173" r="5.5" fill="var(--gold)"/>
+            <circle cx="224" cy="173" r="5.5" fill="var(--surface-panel)" stroke="var(--ink)" stroke-width="1.5"/>
+            <circle cx="252" cy="173" r="5.5" fill="var(--green)"/>
+            <circle cx="272" cy="173" r="5.5" fill="var(--ink)"/>
+
+            <path d="M296 156 C 322 168, 332 196, 320 222" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+            <path d="M320 222 l-12 6 M320 222 l4 14 M320 222 l12 2" stroke="var(--gold)" stroke-width="4" stroke-linecap="round"/>
+
+            <ellipse cx="118" cy="176" rx="58" ry="52" fill="var(--hide-soft)" stroke="var(--ink)" stroke-width="4.5"/>
+            <path d="M84 138 C 70 112, 92 96, 104 116 C 108 100, 132 100, 130 120" fill="var(--hide)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M148 132 C 168 118, 182 130, 168 146 C 178 148, 180 164, 162 166" fill="var(--hide)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+            <ellipse cx="66" cy="150" rx="12" ry="16" fill="var(--hide)" stroke="var(--ink)" stroke-width="3" transform="rotate(-18 66 150)"/>
+
+            <circle cx="92" cy="168" r="6" fill="var(--ink)"/>
+            <circle cx="94" cy="165" r="1.8" fill="var(--surface-panel)"/>
+            <circle cx="126" cy="166" r="6" fill="var(--ink)"/>
+            <circle cx="128" cy="163" r="1.8" fill="var(--surface-panel)"/>
+
+            <ellipse cx="76" cy="196" rx="22" ry="16" fill="var(--hide-soft)" stroke="var(--ink)" stroke-width="3.5"/>
+            <ellipse cx="66" cy="198" rx="3.4" ry="4.6" fill="var(--ink)"/>
+            <ellipse cx="86" cy="198" rx="3.4" ry="4.6" fill="var(--ink)"/>
+
+            <circle cx="150" cy="204" r="8" fill="var(--gold)" stroke="var(--ink)" stroke-width="2"/>
+            <path d="M150 196 v-14" stroke="var(--ink)" stroke-width="2.5"/>
+            <path d="M146 204 h8" stroke="var(--ink)" stroke-width="1.6"/>
+          </g>
+
+          <g transform="translate(300 240) rotate(-8)">
+            <rect x="0" y="0" width="54" height="54" rx="8" fill="var(--red)"/>
+            <text x="27" y="36" text-anchor="middle" font-family="'Song Myung',serif" font-size="26" fill="var(--surface-panel)">담</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="hinge wrap"><i></i></div>
+
+  <section id="story">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">브랜드 이야기</span>
+        <h2>세 사람이 모여, 손끝의 기술을 다시 씁니다</h2>
+        <p>
+          정육점을 지켜온 장인의 손기술과, 브랜드와 유통을 고민하는 두 사람의 시선이 만나
+          청육담이 시작됐습니다. 오래 이어져 온 손질의 기술을 고집하되, 그 과정을 숨기지 않고
+          보여주는 것이 청육담이 다른 이유입니다.
+        </p>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-figure reveal">
+          <span class="role">CRAFTSMANSHIP</span>
+          <h3>장인의 손끝</h3>
+          <p>
+            정육점을 지켜온 장인이 부위마다 결을 읽고 손질합니다. 기계가 대체할 수 없는
+            손끝의 판단이 청육담이 파는 모든 정육의 첫 단계입니다. 그 기술을 다음 세대로
+            이어가는 것, 그것이 청육담이 시작된 이유이기도 합니다.
+          </p>
+        </div>
+
+        <div class="story-list">
+          <div class="story-item reveal">
+            <div class="mark">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M4 6h10M4 18h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h4>손질 — 결을 읽는 시간</h4>
+              <p>부위별 특성에 맞춰 장인이 직접 손질하며, 유통 단계를 최소화해 신선도를 지킵니다.</p>
+            </div>
+          </div>
+          <div class="story-item reveal">
+            <div class="mark">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4>기록 — 과정을 남기는 태도</h4>
+              <p>손질부터 포장까지 과정을 기록하고 공유해, 고객이 궁금해할 지점을 먼저 보여드립니다.</p>
+            </div>
+          </div>
+          <div class="story-item reveal">
+            <div class="mark">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2.5 9h7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4>전승 — 다음 세대로</h4>
+              <p>장인의 기술이 대를 이어 끊기지 않도록, 브랜드라는 그릇에 담아 이어가고 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hinge wrap"><i></i></div>
+
+  <section id="transparency" class="panel">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">투명한 유통</span>
+        <h2>숨기지 않는 유통,<br>눈으로 확인하는 품질</h2>
+        <p>
+          중간 도매상을 거치지 않는 직소싱 구조로 신선도와 합리적인 가격을 지키고,
+          손질부터 배송까지 전 과정을 고객에게 그대로 보여드립니다.
+        </p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-card reveal">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <h4>직소싱 구조</h4>
+          <p>중간 도매상 없이 정육점과 직접 연결된 유통 구조로 신선도와 가격 경쟁력을 함께 지킵니다.</p>
+        </div>
+        <div class="trust-card reveal">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <h4>콜드체인 포장</h4>
+          <p>손질 직후 저온 상태를 유지하며 포장해, 주문 시점의 신선도 그대로 전달합니다.</p>
+        </div>
+        <div class="trust-card reveal">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="13" height="10" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 10h3l2 3v4h-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7.5" cy="19" r="1.6" fill="currentColor"/><circle cx="17.5" cy="19" r="1.6" fill="currentColor"/></svg>
+          <h4>택배사 비교 발송</h4>
+          <p>주문지에 맞춰 배송 경로와 택배사를 비교해, 가장 빠르고 안전한 방법으로 발송합니다.</p>
+        </div>
+        <div class="trust-card reveal">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-3.2 6.4M20 6v5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h4>카카오톡 상담</h4>
+          <p>주문 전후 궁금한 점을 카카오톡으로 직접 안내받을 수 있어, 필요한 부위와 양을 맞출 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hinge wrap"><i></i></div>
+
+  <section id="signature">
+    <div class="wrap sig-grid">
+      <div class="sig-copy reveal">
+        <span class="sig-badge">SIGNATURE</span>
+        <h2>고기케이크, 정육을 선물하는 새로운 방법</h2>
+        <p>
+          부위별로 손질한 고기를 케이크처럼 층층이 쌓아 완성한 청육담의 시그니처 상품입니다.
+          명절이나 특별한 자리에 어울리는, 먹을 수 있는 선물을 만듭니다.
+        </p>
+        <ul class="sig-points">
+          <li><b>층마다 다른 부위</b> — 구이용, 국거리용 등 쓰임에 맞춰 층을 구성합니다.</li>
+          <li><b>선물다운 포장</b> — 케이크 상자를 열듯 꺼내보는 즐거움까지 담았습니다.</li>
+          <li><b>기업·단체 선물 문의 가능</b> — 거래처를 위한 패키지 상품으로도 준비하고 있습니다.</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#order">고기케이크 문의하기</a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <svg viewBox="0 0 360 320" role="img" aria-label="층층이 쌓은 고기케이크 일러스트">
+          <ellipse cx="180" cy="272" rx="120" ry="18" fill="var(--surface-alt)"/>
+          <rect x="70" y="210" width="220" height="52" rx="10" fill="var(--red)" stroke="var(--ink)" stroke-width="3.5"/>
+          <rect x="90" y="158" width="180" height="52" rx="10" fill="var(--gold-soft)" stroke="var(--ink)" stroke-width="3.5"/>
+          <rect x="112" y="106" width="136" height="52" rx="10" fill="var(--hide)" stroke="var(--ink)" stroke-width="3.5"/>
+          <rect x="70" y="230" width="220" height="6" fill="var(--surface-panel)" opacity=".5"/>
+          <rect x="90" y="178" width="180" height="6" fill="var(--surface-panel)" opacity=".5"/>
+          <rect x="112" y="126" width="136" height="6" fill="var(--surface-panel)" opacity=".5"/>
+          <g class="bob">
+            <path d="M180 106 v-26" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M164 80 h32 l-6 16 h-20 z" fill="var(--blue)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+            <text x="180" y="93" text-anchor="middle" font-family="'Song Myung',serif" font-size="12" fill="var(--surface-panel)">청육담</text>
+          </g>
+          <path d="M70 236 q110 22 220 0" fill="none" stroke="var(--surface-panel)" stroke-width="2" opacity=".6"/>
+          <circle cx="130" cy="236" r="4" fill="var(--surface-panel)" opacity=".8"/>
+          <circle cx="230" cy="236" r="4" fill="var(--surface-panel)" opacity=".8"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="hinge wrap"><i></i></div>
+
+  <section id="products" class="panel">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">라인업</span>
+        <h2>부위별 정육부터 선물세트까지</h2>
+        <p>일상의 한 끼와 특별한 자리 모두를 위한 구성으로 준비했습니다.</p>
+      </div>
+
+      <div class="prod-grid">
+        <div class="prod-card reveal">
+          <div class="prod-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 16h9a5.5 5.5 0 000-11H9L4 16z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 19.5h15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="prod-tag">DAILY</span>
+          <h3>프리미엄 부위별 정육</h3>
+          <p>구이, 국거리, 수육 등 쓰임에 맞춰 장인이 직접 손질한 부위별 정육입니다.</p>
+        </div>
+        <div class="prod-card reveal">
+          <div class="prod-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="9" width="16" height="11" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M4 9h16M12 9v11M8 9c0-3 1.5-5 4-5s4 2 4 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="prod-tag">GIFT</span>
+          <h3>명절 · 답례 선물세트</h3>
+          <p>선물용으로 구성한 정육 세트로, 포장부터 손질까지 정성껏 준비합니다.</p>
+        </div>
+        <div class="prod-card reveal">
+          <div class="prod-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="12" width="16" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="6" y="8" width="12" height="5" rx="1.3" stroke="currentColor" stroke-width="1.8"/><path d="M12 8V4m-2 2c0-1.5 2-1.5 2-3 0 1.5 2 1.5 2 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="prod-tag">SIGNATURE</span>
+          <h3>고기케이크</h3>
+          <p>청육담만의 시그니처 상품. 기업·단체 선물 패키지 문의도 받고 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hinge wrap"><i></i></div>
+
+  <section id="order">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">주문 안내</span>
+        <h2>주문부터 도착까지, 네 단계</h2>
+        <p>상담부터 손질, 포장, 배송까지 한 걸음씩 정성을 더합니다.</p>
+      </div>
+
+      <div class="order-steps">
+        <div class="order-step reveal">
+          <div class="num">1</div>
+          <h4>상담 및 주문</h4>
+          <p>스마트스토어 또는 카카오톡 채널을 통해 필요한 부위와 양을 상담하고 주문합니다.</p>
+        </div>
+        <div class="order-step reveal">
+          <div class="num">2</div>
+          <h4>장인의 손질</h4>
+          <p>주문 확인 후 장인이 직접 부위를 손질해 신선도와 품질을 맞춥니다.</p>
+        </div>
+        <div class="order-step reveal">
+          <div class="num">3</div>
+          <h4>콜드체인 포장</h4>
+          <p>저온을 유지한 상태로 신선하게 포장해 출고를 준비합니다.</p>
+        </div>
+        <div class="order-step reveal">
+          <div class="num">4</div>
+          <h4>비교 발송</h4>
+          <p>경로와 택배사를 비교해 가장 빠르고 안전한 방법으로 발송합니다.</p>
+        </div>
+      </div>
+
+      <div class="order-panel reveal">
+        <div class="channel">
+          <h4>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.8-.2.9-.8 3-.9 3.4 0 0-.1.3.2.4.3.1.5-.1.7-.2 1-.7 3.6-2.4 4.3-2.9.3 0 .7.1 1 .1 5.5 0 10-3.6 10-8S17.5 3 12 3z" fill="currentColor"/></svg>
+            카카오톡 채널
+          </h4>
+          <p>부위, 중량, 배송일을 자유롭게 상담할 수 있습니다. 채널 검색창에 아래 이름으로 찾아주세요.</p>
+          <div class="copy-row">
+            <span>청육담</span>
+            <button class="copy-btn" data-copy="청육담" type="button">복사</button>
+          </div>
+        </div>
+        <div class="channel">
+          <h4>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 6v13a1 1 0 001 1h16a1 1 0 001-1V6M3 6l3-3h12l3 3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            네이버 스마트스토어
+          </h4>
+          <p>정식 결제와 주문 내역 관리는 스마트스토어에서 진행합니다. 검색창에 아래 이름을 입력해 주세요.</p>
+          <div class="copy-row">
+            <span>청육담</span>
+            <button class="copy-btn" data-copy="청육담" type="button">복사</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="4" y="4" width="36" height="36" rx="6" transform="rotate(-6 22 22)" fill="var(--red)"/>
+        <text x="22" y="29" text-anchor="middle" font-family="'Song Myung',serif" font-size="20" fill="var(--surface-panel)" transform="rotate(-6 22 22)">청</text>
+      </svg>
+      <span>청육담</span>
+    </a>
+    <p class="foot-note">장인의 손끝과 투명한 유통으로 짓는 정육 이야기, 청육담</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  try{
+    var nav = document.getElementById('nav');
+    var onScroll = function(){
+      if(window.scrollY > 12){ nav.classList.add('shrink'); }
+      else{ nav.classList.remove('shrink'); }
+    };
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  }catch(e){}
+
+  try{
+    var els = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+      els.forEach(function(el){ io.observe(el); });
+    } else {
+      els.forEach(function(el){ el.classList.add('in-view'); });
+    }
+  }catch(e){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  try{
+    document.querySelectorAll('.copy-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var text = btn.getAttribute('data-copy') || '';
+        var done = function(){
+          var original = btn.textContent;
+          btn.textContent = '복사됨';
+          btn.classList.add('copied');
+          setTimeout(function(){
+            btn.textContent = original;
+            btn.classList.remove('copied');
+          }, 1600);
+        };
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done).catch(function(){
+            try{
+              var ta = document.createElement('textarea');
+              ta.value = text; document.body.appendChild(ta); ta.select();
+              document.execCommand('copy'); document.body.removeChild(ta);
+              done();
+            }catch(e){}
+          });
+        } else {
+          try{
+            var ta2 = document.createElement('textarea');
+            ta2.value = text; document.body.appendChild(ta2); ta2.select();
+            document.execCommand('copy'); document.body.removeChild(ta2);
+            done();
+          }catch(e){}
+        }
+      });
+    });
+  }catch(e){}
+})();
+</script>
+
+</body></html>

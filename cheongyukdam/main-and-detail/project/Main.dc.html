@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Noto Sans KR", sans-serif; background: #F7F6F1; color: #17201C; }
+    a { text-decoration: none; color: inherit; }
+    .eng { font-family: "Cormorant Garamond", serif; }
+    .kr-serif { font-family: "Noto Serif KR", serif; }
+    .navlink:hover { color: {{accent}}; }
+    .cta:hover { background: #17201C; color: #F7F6F1; }
+  </style>
+</helmet>
+
+<div style="width: 100%; min-height: 900px; background: #F7F6F1;">
+
+  <!-- Header -->
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 28px 64px; border-bottom: 1px solid rgba(23,32,28,0.1); position: sticky; top: 0; background: rgba(247,246,241,0.92); backdrop-filter: blur(6px); z-index: 10;">
+    <div style="display: flex; flex-direction: column; line-height: 1;">
+      <span class="eng" style="font-size: 26px; letter-spacing: 4px; font-weight: 500;">CHEONGYUKDAM</span>
+      <span class="kr-serif" style="font-size: 12px; letter-spacing: 6px; color: #55645D; margin-top: 4px;">청&nbsp;육&nbsp;담</span>
+    </div>
+    <nav style="display: flex; gap: 40px;">
+      <a class="navlink" href="#products" style="font-size: 15px; letter-spacing: 0.5px;">전체상품</a>
+      <a class="navlink" href="#gift" style="font-size: 15px; letter-spacing: 0.5px;">선물세트</a>
+      <a class="navlink" href="#cuts" style="font-size: 15px; letter-spacing: 0.5px;">원육</a>
+      <a class="navlink" href="#mealkit" style="font-size: 15px; letter-spacing: 0.5px;">밀키트</a>
+      <a class="navlink" href="#story" style="font-size: 15px; letter-spacing: 0.5px;">브랜드스토리</a>
+    </nav>
+    <div style="display: flex; gap: 20px; align-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17201C" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17201C" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="display: flex; align-items: center; justify-content: center; min-height: 640px; background: linear-gradient(180deg, #A9D6C8 0%, #C4E3D8 55%, #F7F6F1 100%); text-align: center; padding: 80px 40px;">
+    <div style="max-width: 720px; display: flex; flex-direction: column; align-items: center; gap: 28px;">
+      <span class="kr-serif" style="font-size: 14px; letter-spacing: 8px; color: #17201C;">CHEONGYUKDAM</span>
+      <h1 class="kr-serif" style="margin: 0; font-size: 52px; font-weight: 500; line-height: 1.35; color: #17201C;">정성으로 매듭짓고,<br>품격으로 포장하다</h1>
+      <p style="margin: 0; font-size: 16px; line-height: 1.8; color: #34433C; max-width: 480px;">[브랜드 슬로건 문구를 입력해주세요 — 예: 청량한 예의, 청육담의 한우 선물]</p>
+      <a class="cta" href="#gift" style="margin-top: 12px; padding: 16px 44px; border: 1px solid #17201C; border-radius: 2px; font-size: 14px; letter-spacing: 2px; background: transparent; transition: all 0.2s ease;">선물세트 보기</a>
+    </div>
+  </section>
+
+  <!-- Curation -->
+  <section id="products" style="padding: 100px 64px; background: #F7F6F1;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <span class="kr-serif" style="font-size: 13px; letter-spacing: 4px; color: {{accent}};">CURATION</span>
+      <h2 class="kr-serif" style="font-size: 30px; font-weight: 500; margin: 14px 0 0;">청육담이 고기를 고르는 세 가지 기준</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; max-width: 1100px; margin: 0 auto;">
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 44px 28px; background: #FFFFFF; border: 1px solid rgba(23,32,28,0.08);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#17201C" stroke-width="1.4"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <span class="kr-serif" style="font-size: 17px; font-weight: 500;">등급</span>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.8; color: #55645D; text-align: center;">1++ / 1등급 기준으로<br>엄선한 한우만 선별합니다</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 44px 28px; background: #FFFFFF; border: 1px solid rgba(23,32,28,0.08);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#17201C" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        <span class="kr-serif" style="font-size: 17px; font-weight: 500;">부위</span>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.8; color: #55645D; text-align: center;">등심·채끝·안심 등<br>부위별 특성에 맞게 손질합니다</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 44px 28px; background: #FFFFFF; border: 1px solid rgba(23,32,28,0.08);">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#17201C" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span class="kr-serif" style="font-size: 17px; font-weight: 500;">숙성도</span>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.8; color: #55645D; text-align: center;">최적의 기간 동안<br>정성껏 숙성해 맛을 완성합니다</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gift Sets -->
+  <section id="gift" style="padding: 100px 64px; background: #EFEEE7;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <span class="kr-serif" style="font-size: 13px; letter-spacing: 4px; color: {{accent}};">GIFT COLLECTION</span>
+      <h2 class="kr-serif" style="font-size: 30px; font-weight: 500; margin: 14px 0 0;">청육담 선물세트</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; max-width: 1280px; margin: 0 auto;">
+      <sc-for list="{{giftItems}}" as="item" hint-placeholder-count="4">
+        <a href="#" style="display: flex; flex-direction: column; background: #FFFFFF; overflow: hidden; border: 1px solid rgba(23,32,28,0.08);">
+          <div style="width: 100%; aspect-ratio: 1 / 1; background: #17201C; display: flex; align-items: center; justify-content: center;">
+            <span style="color: #A9D6C8; font-size: 12px; letter-spacing: 2px;">{{item.imgLabel}}</span>
+          </div>
+          <div style="padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <span class="kr-serif" style="font-size: 15px;">{{item.name}}</span>
+            <span style="font-size: 13.5px; color: #55645D;">{{item.price}}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Brand Story -->
+  <section id="story" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); min-height: 560px;">
+    <div style="background: #17201C; display: flex; align-items: center; justify-content: center;">
+      <span style="color: #A9D6C8; font-size: 12px; letter-spacing: 2px;">[브랜드 스토리 이미지]</span>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: 80px; background: #F7F6F1;">
+      <span class="kr-serif" style="font-size: 13px; letter-spacing: 4px; color: {{accent}};">BRAND STORY</span>
+      <h2 class="kr-serif" style="font-size: 28px; font-weight: 500; line-height: 1.5; margin: 0;">매듭 하나에 담긴<br>정성, 청육담</h2>
+      <p style="font-size: 15px; line-height: 2; color: #34433C; margin: 0;">[브랜드 스토리 본문을 입력해주세요 — 전통 명주 보자기와 매듭 술, 자수 일러스트로 완성한 포장에 담아 정육을 넘어선 '선물의 격'을 전한다는 이야기를 담으면 좋습니다.]</p>
+      <a class="cta" href="#" style="align-self: flex-start; margin-top: 8px; padding: 14px 36px; border: 1px solid #17201C; border-radius: 2px; font-size: 13.5px; letter-spacing: 2px; transition: all 0.2s ease;">더 알아보기</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #17201C; color: #C9D2CD; padding: 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <span class="eng" style="font-size: 20px; letter-spacing: 3px; color: #F7F6F1;">CHEONGYUKDAM</span>
+      <span style="font-size: 13px; line-height: 1.9;">[상호명] · [사업자등록번호]<br>[주소]</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <span style="font-size: 13px; letter-spacing: 1px; color: #F7F6F1;">CUSTOMER CENTER</span>
+      <span style="font-size: 13px; line-height: 1.9;">[전화번호]<br>[운영시간] · [이메일]</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <span style="font-size: 13px; letter-spacing: 1px; color: #F7F6F1;">FOLLOW</span>
+      <div style="display: flex; gap: 16px;">
+        <a href="#" style="font-size: 13px; border-bottom: 1px solid #55645D;">Instagram</a>
+        <a href="#" style="font-size: 13px; border-bottom: 1px solid #55645D;">Naver Store</a>
+        <a href="#" style="font-size: 13px; border-bottom: 1px solid #55645D;">Kakao</a>
+      </div>
+    </div>
+    <div style="grid-column: 1 / -1; border-top: 1px solid #34433C; padding-top: 24px; font-size: 12px; color: #55645D;">© 2026 CHEONGYUKDAM. All rights reserved.</div>
+  </footer>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#3E8A6E","options":["#3E8A6E","#17201C","#A9D6C8","#C4805E"]},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#3E8A6E',
+      giftItems: [
+        { name: '[선물세트명 1]', price: '[가격]', imgLabel: 'GIFT SET 01' },
+        { name: '[선물세트명 2]', price: '[가격]', imgLabel: 'GIFT SET 02' },
+        { name: '[선물세트명 3]', price: '[가격]', imgLabel: 'GIFT SET 03' },
+        { name: '[선물세트명 4]', price: '[가격]', imgLabel: 'GIFT SET 04' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
